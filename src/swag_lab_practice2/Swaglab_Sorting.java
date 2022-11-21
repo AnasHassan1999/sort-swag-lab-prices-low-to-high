@@ -1,11 +1,13 @@
 package swag_lab_practice2;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -44,7 +46,7 @@ public void log_in() {
 	  
 	  List <WebElement> priceslist=driver.findElements(By.className("inventory_item_price"));
 	  
-	  
+	  List<Double> editedlist=new ArrayList<>();
 	  for(int i=0;i<priceslist.size();i++) {
 		  
 		String prices= priceslist.get(i).getText();
@@ -56,13 +58,18 @@ public void log_in() {
 		
 	System.out.println(doubleprices);	
 		
-		
-		
-		
-
+		editedlist.add(doubleprices);
 		
 	  }
-	  
+	  for(int i=0;i<editedlist.size();i++) {
+		  
+		  boolean check=editedlist.get(0)<editedlist.get(editedlist.size()-1);
+		  
+		  Assert.assertEquals(check, true);
+		  
+		  
+	  }
+ 
   }
   
   
